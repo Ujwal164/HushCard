@@ -1,160 +1,117 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   min-height: 100vh;
-  overflow: hidden;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background:
-    radial-gradient(circle at center,
-      #111 0%,
-      #090909 45%,
-      #000 100%);
+  background: linear-gradient(
+    180deg,
+    #1b1235 0%,
+    #2d1b69 100%
+  );
 
-  color: white;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-
-  background:
-    radial-gradient(circle,
-      transparent 40%,
-      rgba(0,0,0,0.85) 100%);
-
-  pointer-events: none;
-}
-
-.title {
-  font-family: "Creepster", cursive;
-  font-size: 5rem;
-  color: #b30000;
-
-  text-shadow:
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px #550000;
-
-  animation: flicker 4s infinite;
-}
-
-.subtitle {
-  margin-top: 10px;
-  color: #999;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
-.card {
-  position: relative;
-
-  width: 600px;
-  max-width: 90vw;
-
-  margin-top: 40px;
-  padding: 50px;
-
-  border-radius: 20px;
-
-  background: rgba(20,20,20,0.8);
-
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,0,0,0.2);
-
-  box-shadow:
-    0 0 20px rgba(255,0,0,0.2),
-    0 0 60px rgba(255,0,0,0.1);
-
+  font-family: "Comic Sans MS", cursive;
   overflow: hidden;
 }
 
-.glow {
+h1 {
+  color: #ffb347;
+  font-size: 4rem;
+  text-shadow:
+    0 0 10px #ff9900,
+    0 0 20px #ff9900;
+}
+
+.card {
+  width: 650px;
+  max-width: 90vw;
+  min-height: 350px;
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+
+  border: 4px solid #ffb347;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  position: relative;
+
+  cursor: pointer;
+
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotate(-1deg);
+  box-shadow:
+    0 15px 40px rgba(255,179,71,.4);
+}
+
+.card::before {
+  content: "👻";
   position: absolute;
-  inset: 0;
-
-  background:
-    radial-gradient(circle,
-      rgba(255,0,0,0.08),
-      transparent 70%);
-
-  animation: pulse 6s infinite;
+  top: -40px;
+  font-size: 80px;
+  animation: floatGhost 3s infinite ease-in-out;
 }
 
 .secret {
-  position: relative;
-  z-index: 2;
+  font-size: 2rem;
+  line-height: 1.6;
 
-  font-family: "Special Elite", monospace;
+  color: white;
 
-  font-size: 1.6rem;
-  line-height: 1.8;
+  opacity: 0;
 
-  color: #f0f0f0;
+  transition: opacity 0.6s ease;
 
-  text-shadow: 0 0 8px rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+.card:hover .secret {
+  opacity: 1;
+}
+
+.hint {
+  font-size: 1.8rem;
+  color: #ffb347;
+}
+
+.card:hover .hint {
+  display: none;
 }
 
 .user {
-  margin-top: 30px;
+  margin-top: 25px;
 
-  text-align: right;
+  color: #ffd166;
 
-  color: #b30000;
+  font-size: 1.8rem;
 
-  font-size: 1.2rem;
-
-  font-family: "Creepster", cursive;
+  font-weight: bold;
 }
 
-.fog {
-  position: fixed;
-  inset: 0;
-
-  background:
-    url("https://www.transparenttextures.com/patterns/foggy-birds.png");
-
-  opacity: 0.08;
-
-  animation: drift 60s linear infinite;
-}
-
-@keyframes pulse {
-  0%,100% {
-    opacity: .5;
+@keyframes floatGhost {
+  0% {
+    transform: translateY(0);
   }
 
   50% {
-    opacity: 1;
-  }
-}
-
-@keyframes drift {
-  from {
-    transform: translateX(0);
+    transform: translateY(-15px);
   }
 
-  to {
-    transform: translateX(-500px);
-  }
-}
-
-@keyframes flicker {
-  0%,18%,22%,25%,53%,57%,100% {
-    opacity: 1;
-  }
-
-  20%,24%,55% {
-    opacity: .4;
+  100% {
+    transform: translateY(0);
   }
 }
