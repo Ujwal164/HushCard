@@ -2,25 +2,35 @@
 <html>
 
 <head>
-  <title>HushCard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Titan+One&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <title>HushCard - Secrets From The Darkness</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body>
-  <h1>What's your secret?</h1>
+
+  <div class="fog"></div>
+
+  <h1 class="title">HushCard</h1>
+
+  <p class="subtitle">A whisper hidden in the darkness...</p>
+
   <div class="card">
-    <p>
-      <%= secret %>
+    <div class="glow"></div>
+
+    <p class="secret">
+      "<%= secret %>"
     </p>
+
+    <p class="user">
+      — <%= user %>
+    </p>
+
   </div>
-  <p class="user">
-    <%= user %>
-  </p>
+
 </body>
 
 </html>

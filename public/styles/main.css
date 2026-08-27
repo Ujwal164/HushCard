@@ -1,117 +1,160 @@
-:root {
-  --card-height: 65vh;
-  --card-width: calc(var(--card-height) / 1.5);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   min-height: 100vh;
-  background: #212534;
+  overflow: hidden;
+
   display: flex;
-  align-items: center;
   flex-direction: column;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  box-sizing: border-box;
-}
-h1 {
-  color: white;
-  font-family: "Titan One", cursive;
-  margin-bottom: 20px;
-}
-.card {
-  background: url("../images/whisper-img.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: var(--card-width);
-  height: var(--card-height);
-  padding: 3px;
-  position: relative;
-  border-radius: 6px;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  display: flex;
-  font-size: 1.5em;
-  color: rgb(88 199 250 / 0%);
-  font-family: "Gloria Hallelujah", cursive;
+
+  background:
+    radial-gradient(circle at center,
+      #111 0%,
+      #090909 45%,
+      #000 100%);
+
+  color: white;
 }
 
-.card:hover {
-  color: rgb(88 199 250 / 100%);
-  transition: color 1s;
-}
-.card:hover:before,
-.card:hover:after {
-  animation: none;
-  opacity: 0;
-}
-
-.card::before {
+body::before {
   content: "";
-  width: 104%;
-  height: 102%;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    var(--rotate),
-    #5ddcff,
-    #3c67e3 43%,
-    #4e00c2
-  );
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle,
+      transparent 40%,
+      rgba(0,0,0,0.85) 100%);
+
+  pointer-events: none;
+}
+
+.title {
+  font-family: "Creepster", cursive;
+  font-size: 5rem;
+  color: #b30000;
+
+  text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #550000;
+
+  animation: flicker 4s infinite;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: #999;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.card {
+  position: relative;
+
+  width: 600px;
+  max-width: 90vw;
+
+  margin-top: 40px;
+  padding: 50px;
+
+  border-radius: 20px;
+
+  background: rgba(20,20,20,0.8);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,0,0,0.2);
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.2),
+    0 0 60px rgba(255,0,0,0.1);
+
+  overflow: hidden;
+}
+
+.glow {
   position: absolute;
-  z-index: -1;
-  top: -1%;
-  left: -2%;
-  animation: spin 2.5s linear infinite;
+  inset: 0;
+
+  background:
+    radial-gradient(circle,
+      rgba(255,0,0,0.08),
+      transparent 70%);
+
+  animation: pulse 6s infinite;
 }
 
-.card::after {
-  position: absolute;
-  content: "";
-  top: calc(var(--card-height) / 6);
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  transform: scale(0.8);
-  filter: blur(calc(var(--card-height) / 6));
-  background-image: linear-gradient(
-    var(--rotate),
-    #5ddcff,
-    #3c67e3 43%,
-    #4e00c2
-  );
-  opacity: 1;
-  transition: opacity 0.5s;
-  animation: spin 2.5s linear infinite;
-}
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
-}
+.secret {
+  position: relative;
+  z-index: 2;
 
-@keyframes spin {
-  0% {
-    --rotate: 0deg;
-  }
-  100% {
-    --rotate: 360deg;
-  }
-}
+  font-family: "Special Elite", monospace;
 
-a {
-  color: #212534;
-  text-decoration: none;
-  font-family: sans-serif;
-  font-weight: bold;
-  margin-top: 2rem;
+  font-size: 1.6rem;
+  line-height: 1.8;
+
+  color: #f0f0f0;
+
+  text-shadow: 0 0 8px rgba(255,255,255,0.2);
 }
 
 .user {
-  color: white;
-  font-size: 24px;
-  font-family: "Titan One", cursive;
+  margin-top: 30px;
+
+  text-align: right;
+
+  color: #b30000;
+
+  font-size: 1.2rem;
+
+  font-family: "Creepster", cursive;
+}
+
+.fog {
+  position: fixed;
+  inset: 0;
+
+  background:
+    url("https://www.transparenttextures.com/patterns/foggy-birds.png");
+
+  opacity: 0.08;
+
+  animation: drift 60s linear infinite;
+}
+
+@keyframes pulse {
+  0%,100% {
+    opacity: .5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-500px);
+  }
+}
+
+@keyframes flicker {
+  0%,18%,22%,25%,53%,57%,100% {
+    opacity: 1;
+  }
+
+  20%,24%,55% {
+    opacity: .4;
+  }
 }
