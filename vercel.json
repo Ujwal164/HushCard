@@ -5,7 +5,7 @@
       "src": "index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["node_modules/ejs/**", "views/**"]
+        "includeFiles": ["node_modules/ejs/**", "views/**", "public/**"]
       }
     }
   ],
