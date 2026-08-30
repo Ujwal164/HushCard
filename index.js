@@ -1,4 +1,5 @@
 import express from "express";
+import ejs from 'ejs';
 import axios from "axios";
 const app = express();
 const port = 3000;
